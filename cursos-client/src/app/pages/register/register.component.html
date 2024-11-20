@@ -1,0 +1,51 @@
+<div class="signup-container">
+    <h2>Cadastro de Usuário</h2>
+    <form [formGroup]="form">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input class="form-control"
+              [ngClass]="{'is-invalid': hasError(form.get('name')) }" 
+              type="text"
+              formControlName="name">
+            <div class="invalid-feedback" *ngIf="hasError(form.get('name'))">
+              <p *ngIf="form.get('name')?.hasError('whitespace')">Campo inválido</p>
+              <p *ngIf="form.get('name')?.hasError('required')">Campo obrigatório</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="lastname">Last Name</label>
+            <input class="form-control"
+              [ngClass]="{'is-invalid': hasError(form.get('lastname')) }" 
+              type="text"
+              formControlName="lastname">
+            <div class="invalid-feedback" *ngIf="hasError(form.get('lastname'))">
+              <p *ngIf="form.get('lastname')?.hasError('whitespace')">Campo inválido</p>
+              <p *ngIf="form.get('lastname')?.hasError('required')">Campo obrigatório</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input class="form-control" 
+                [ngClass]="{'is-invalid': hasError(form.get('email')) }" 
+                type="email"
+                formControlName="email">
+            <div class="invalid-feedback" *ngIf="hasError(form.get('email'))">
+                <p *ngIf="form.get('email')?.hasError('emailInUse')">E-mail já cadastrado.</p>
+                <p *ngIf="form.get('name')?.hasError('required')">Campo obrigatório</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password">Password</label>
+            <input class="form-control"
+              [ngClass]="{'is-invalid': hasError(form.get('password')) }" 
+              type="password"
+              formControlName="password">
+            <div class="invalid-feedback" *ngIf="hasError(form.get('password'))">
+              <p *ngIf="form.get('password')?.hasError('strongPassword')">Senha muito fraca. Inclua caracteres especiais e letras maiúsculas</p>
+              <p *ngIf="form.get('password')?.hasError('minLength')">Senha muito fraca. Inclua caracteres especiais e letras maiúsculas</p>
+              <p *ngIf="form.get('name')?.hasError('required')">Campo obrigatório</p>
+            </div>
+        </div>
+        <button class="btn btn-success" (click)="sigup()" [disabled]="!form.valid">Cadastrar</button>
+    </form>
+</div>
